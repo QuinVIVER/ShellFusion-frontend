@@ -34,18 +34,18 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 Download nginx and use it to reverse proxy our website .
 
 Using the fellowing instruction to package our frontend pages . 
-'''
+```bash
 npm run build
-'''
+```
 
 After building , the folder "dist" will generate and move it to the " nginx/html " in your server .
-'''
+```
 mv dist nginx/html
-'''
+```
 
 Finally , using fellowing intruction to reload the info about the web page .
-'''
+```
 nginx -s reload
-'''
+```
 
 For more detail , you can check out the [Nginx Deployment Guides](https://docs.nginx.com/nginx/deployment-guides/) and [vue-cil Delopyment](https://cli.vuejs.org/guide/deployment.html).
