@@ -82,8 +82,7 @@ export default {
   data () {
     return {
       msg: 'shellFusion',
-      path : 'ws://quinv.mistgpu.xyz:20004/',
-      // path: 'ws://localhost:8088',
+      path: 'ws://localhost:8088',
       ws: {},
       resultFromServer: new Array(),
       queryUrl_dict : {"ul":"https://unix.stackexchange.com/questions/","so":"https://stackoverflow.com/questions/","su":"https://superuser.com/questions/","au":"https://askubuntu.com/questions/"}
