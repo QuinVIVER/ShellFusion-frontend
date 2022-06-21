@@ -25,11 +25,11 @@
                 <div class="col-md-6">
                     <ul class="nav nav-footer justify-content-end">
                         <li class="nav-item">
-                            <a href="https://github.com/Don98/shellfusion" class="nav-link" target="_blank" rel="noopener">About
+                            <a href="https://github.com/22AulnO/ShellFusion-frontend" class="nav-link" target="_blank" rel="noopener">About
                                 Us</a>
                         </li>
                         <li class="nav-item">
-                            <a href="https://github.com/Don98/shellfusion"
+                            <a href="https://github.com/22AulnO/ShellFusion-frontend"
                                class="nav-link" target="_blank" rel="noopener">MIT License</a>
                         </li>
                     </ul>

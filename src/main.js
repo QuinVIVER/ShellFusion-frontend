@@ -22,7 +22,7 @@ import Argon from "./plugins/argon-kit";
 import './registerServiceWorker'
 // import Highlight from "@/highlight";
 import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-dark.css'	//样式
+import 'highlight.js/styles/docco.css'	//样式
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
   blocks.forEach((block)=>{

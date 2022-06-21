@@ -19,43 +19,44 @@
                         <img src="img/brand/3.png" style="width: 200px;" class="img-fluid">
 
                         <p class="lead text-white mt-4 mb-5"></p>
-                          <div class="input-group-append text-center" style="width: 120%;position: relative;right: 50px;top: 20px">
+                          <div class="input-group-append text-center" style="width: 130%;position: relative;right: 80px;top: -20px">
                             <base-input placeholder="How to extract the first two characters of a string in shell scripting?" @keyup.enter="searchEnterFun" style="width: 2000px"
                                         addon-left-icon="ni ni-zoom-split-in" v-model = 'query_content'
                                         v-on:focus="focusCustomer" v-on:blur="blurCustomer">
                             </base-input>
                             <base-button type="primary" style="height:45px"  id = 'query' v-on:click="to_query">Search</base-button>
                           </div>
-                      <div style="clear: both;overflow: auto;height:800px;width: 125%;position: relative;right: 80px;top: 20px">
+                      <div style="clear: both;overflow: auto;height:800px;width: 135%;position: relative;right: 110px;top: -20px">
                         <ul id = "list">
                             <div class = "Result1"  v-for="(answer,index) in resultFromServer.slice(0, 1)" :key="index">
-                              <div class = "title1">The Top-1 Answer:======</div>
+                              <div class = "title1">Top-1 Answer:</div>
                               <br />
-                              <div class = "content1" v-highlight>Command: <code style="color: #28a745;font-size: 15px;font-family: 'Microsoft YaHei'">{{ answer["Command"] }}<br /></code>
-                                MP Summary: {{ answer["MP Summary"] }}<br />
-                                Most Similar TLDR Task: {{ answer["Most Similar TLDR Task"] }}<br />
-                                Most Similar TLDR Script: <pre v-highlight><code class="bash">{{ answer["Most Similar TLDR Script"] }}<br /></code></pre>
-                                <br />
-                                <span style="font-size: 16px;font-weight: bold">### Top-3 Similar Questions with Accepted Scripts ###<br /></span>
+                              <div class = "content1" v-highlight style="position: relative; top: -15px">Command: <code style="color: #bd081c;font-size: 15px;font-family: 'Microsoft YaHei'">{{ answer["Command"] }}<br /></code>
+                                MP Summary: <span style="color: #28a745">{{ answer["MP Summary"] }}<br /></span>
+                                Most Similar TLDR Task-Script Pair: <span style="color: #28a745">{{ answer["Most Similar TLDR Task"] }}<br /></span>
+                                <pre v-highlight><code class="bash">{{ answer["Most Similar TLDR Script"] }}<br /></code></pre>
+                                <span style="font-size: 16px;font-weight: bold">## Top-3 Similar Questions with Accepted Scripts ##<br /></span>
                                 <div v-for="(a, index) in answer['Top-3 Similar Questions']" :key="index">
-                                  Question: <a href="javascript:;" v-on:click="getUrl(a.split(':')[0])"><code>{{a.split(':')[1]}}<br /></code></a>
-                                Accepted Script: <pre v-highlight><code class="bash">{{answer['Top-3 Scripts'][index].split(':')[1].replace(' ', '')}}<br /></code></pre>
+                                  Question: <a href="javascript:;" v-on:click="getUrl(a.split(':')[0])" style="color: #1fa2ff"><code>{{a.split(':')[1]}}<br /></code></a>
+                                <pre v-highlight><code class="bash">{{answer['Top-3 Scripts'][index].slice(answer['Top-3 Scripts'][index].indexOf(":")+1).replace(' ', '')}}<br /></code></pre>
                                 </div>
-                                <br />
-                                <span style="font-weight: bold;font-size: 16px">### Explanations about Options ###<br /></span>
+                                <span style="font-weight: bold;font-size: 16px">## Explanations about Options ##<br /></span>
                                 <div v-for="(value, key) in answer['Explanations about Options']">
-                                  <code>{{key}}:</code>
+                                  <code>{{key}}: </code>
                                   <span>{{value}}<br /></span>
                                 </div>
                                 <br />
-                                <div class = "title1" style="font-size: 20px">Other Answers:======</div>
-                                <br />
                                 <div class = "Result" v-on:click = "jump" v-for="(answer,index) in resultFromServer.slice(1, resultFromServer.length)" :key="index">
-                                  <div class = "content" v-highlight style="background-color: rgba(230,231,217,0.16)">Command: <code v-highlight style="color: #28a745;font-size: 15px">{{ answer["Command"] }}<br /></code>
-                                    MP Summary: {{ answer["MP Summary"] }}<br />
-                                    Most Similar TLDR Task: {{ answer["Most Similar TLDR Task"] }}<br />
-                                    <Modals :data1="answer"></Modals>
+                                  <div class = "content" v-highlight style="background-color: rgba(230,231,217,0.16)">
+                                    <div class = "title1" style="font-size: 20px">Top-{{index+2}} Answer:</div>
+                                    <br />
+                                    Command: <code v-highlight style="color: #bd081c;font-size: 15px">{{ answer["Command"] }}<br /></code>
+                                    MP Summary: <span style="color: #28a745">{{ answer["MP Summary"] }}<br /></span>
+                                    Most Similar TLDR Task-Script Pair: <span style="color: #28a745">{{ answer["Most Similar TLDR Task"] }}<br /></span>
+                                    <pre v-highlight><code class="bash">{{ answer["Most Similar TLDR Script"] }}<br /></code></pre>
+                                    <br />
                                 </div>
+                                  <Modals :data1="answer"></Modals>
                               </div>
                             </div>
                             </div>
@@ -82,8 +83,8 @@ export default {
   data () {
     return {
       msg: 'shellFusion',
-      path : 'ws://quinv.mistgpu.xyz:20004/',
-      // path: 'ws://localhost:8088',
+      // path : 'ws://quinv.mistgpu.xyz:20004/',
+      path: 'ws://localhost:8088',
       ws: {},
       resultFromServer: new Array(),
       queryUrl_dict : {"ul":"https://unix.stackexchange.com/questions/","so":"https://stackoverflow.com/questions/","su":"https://superuser.com/questions/","au":"https://askubuntu.com/questions/"}
@@ -171,7 +172,7 @@ ul{
 
 .Result{
   width: 100%;
-  height: 130px;
+  height: 190px;
   margin: 0 auto;
   font-family: 'Microsoft YaHei';
   font-size: 16px;
@@ -200,7 +201,7 @@ ul{
 
 .content{
   /*font-weight: bold;*/
-  height: 130px;
+  height: 150px;
   font-family: 'Microsoft YaHei';
   font-size: 14px;
   margin: 5px auto;
