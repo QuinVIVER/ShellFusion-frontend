@@ -13,7 +13,7 @@
                 <span style="font-size: 16px;font-weight: bold">## Top-3 Similar Questions with the Accepted Scripts ##</span>
                 <br />
                 <div v-for="(a, index) in data1['Top-3 Similar Questions']" :key="index">
-                  Question: <a @click="getUrl1(a.split(':')[0])" style="cursor: pointer;color: #1da1f2"><code>{{a.split(':')[1]}}<br /></code></a>
+                  Question: <a @click="getUrl1(a.split(':')[0])" style="cursor: pointer;color: blue">{{a.split(':')[1]}}<br /></a>
                     <pre v-highlight><code class="bash">{{data1['Top-3 Scripts'][index].slice(data1['Top-3 Scripts'][index].indexOf(":")+1).replace(' ', '')}}<br /></code></pre>
                 </div>
                 <span style="font-weight: bold;font-size: 16px">## Explanations about Options ##<br /></span>
