@@ -16,17 +16,17 @@
             <div class="col px-0">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-7 text-center pt-lg" style="height: 900px">
-                        <img src="img/brand/3.png" style="width: 200px;" class="img-fluid">
+                        <img src="img/brand/3.png" style="width: 350px;" class="img-fluid">
 
                         <p class="lead text-white mt-4 mb-5"></p>
-                          <div class="input-group-append text-center" style="width: 130%;position: relative;right: 80px;top: -20px">
+                          <div class="input-group-append text-center" style="width: 180%;position: relative;right: 230px;top: -20px">
                             <base-input placeholder="How to extract the first two characters of a string in shell scripting?" @keyup.enter="searchEnterFun" style="width: 2000px"
                                         addon-left-icon="ni ni-zoom-split-in" v-model = 'query_content'
                                         v-on:focus="focusCustomer" v-on:blur="blurCustomer">
                             </base-input>
                             <base-button type="primary" style="height:45px"  id = 'query' v-on:click="to_query">Search</base-button>
                           </div>
-                      <div style="clear: both;overflow: auto;height:800px;width: 135%;position: relative;right: 110px;top: -20px">
+                      <div class='roll' style="clear: both;overflow: auto;height:800px;width: 188%;position: relative;right: 270px;top: -20px">
                         <ul id = "list">
                             <div class = "Result1"  v-for="(answer,index) in resultFromServer.slice(0, 1)" :key="index">
                               <div class = "title1">Top-1 Answer:</div>
@@ -37,12 +37,12 @@
                                 <pre v-highlight><code class="bash">{{ answer["Most Similar TLDR Script"] }}<br /></code></pre>
                                 <span style="font-size: 16px;font-weight: bold">## Top-3 Similar Questions with Accepted Scripts ##<br /></span>
                                 <div v-for="(a, index) in answer['Top-3 Similar Questions']" :key="index">
-                                  Question: <a href="javascript:;" v-on:click="getUrl(a.split(':')[0])" style="color: #1fa2ff"><code>{{a.split(':')[1]}}<br /></code></a>
+                                  Question: <a href="javascript:;" v-on:click="getUrl(a.split(':')[0])" style="color: blue">{{a.split(':')[1]}}<br /></a>
                                 <pre v-highlight><code class="bash">{{answer['Top-3 Scripts'][index].slice(answer['Top-3 Scripts'][index].indexOf(":")+1).replace(' ', '')}}<br /></code></pre>
                                 </div>
                                 <span style="font-weight: bold;font-size: 16px">## Explanations about Options ##<br /></span>
                                 <div v-for="(value, key) in answer['Explanations about Options']">
-                                  <code>{{key}}: </code>
+                                  <code style="color: #4f40ff;font-size: 14px">{{key}}: </code>
                                   <span>{{value}}<br /></span>
                                 </div>
                                 <br />
@@ -83,7 +83,7 @@ export default {
   data () {
     return {
       msg: 'shellFusion',
-      path: 'ws://localhost:20004',
+      path: 'ws://quinv.mistgpu.xyz:20004',
       ws: {},
       resultFromServer: new Array(),
       queryUrl_dict : {"ul":"https://unix.stackexchange.com/questions/","so":"https://stackoverflow.com/questions/","su":"https://superuser.com/questions/","au":"https://askubuntu.com/questions/"}
@@ -169,6 +169,11 @@ ul{
   display: none;
 }
 
+.roll::-webkit-scrollbar{
+  display: none;
+}
+
+
 .Result{
   width: 100%;
   height: 190px;
@@ -216,6 +221,10 @@ ul{
   font-weight: bold;
   /*padding: 0px 10px 0px 10px; !** 上右下左 **!*/
   height: 16px;
+}
+
+.bash{
+  font-size: 14px;
 }
 
 .content1{
